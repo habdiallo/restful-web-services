@@ -1,0 +1,297 @@
+Retrieve all todos for a user
+GET /users/{user-name}/todos
+
+Delete a Todo of a user
+DELETE /users/{user-name}/todos/{todo-id}
+
+Edit a Todo of a user
+PUT /users/{user-name}/todos/{todo-id}
+
+Create a new Todo of a user
+Post /users/{user-name}/todos/
+
+
+################################
+Prise de Note :
+
+RESPONSE STATUS :
+    200 SUCCESS
+    404 RESOURCE NOT FOUND
+    400 BAD REQUEST
+    201 CREATED
+    401 UNAUTHORIZED
+    500 SERVER ERROR
+
+
+Évaluons rapidement quelques bonnes pratiques dans les services RESTful
+La première et la dernière meilleure pratique est le consommateur d'abord.
+
+Pensez toujours à l'utilisateur. Pouvez-vous avoir une idée claire de qui vous êtes consommateurs  ?
+
+Est-ce une application Web ?
+Vous attendez-vous à ce qu'une application mobile arrive dans le futur ?
+Et avoir une idée claire de ce qu'ils veulent avant vous nommez vos ressources.
+
+Pensez du point de vue de vos clients. Que pensent-ils de ces ressources ?
+
+Seront-ils capables de comprendre le nom de vos ressources ?
+
+Plus il est simple pour votre consommateur de comprendre vos services, mieux c'est pour vous.
+
+Enfin et surtout, ayez une excellente documentation pour vos applications.
+Swagger est l'une des normes de documentation les plus populaires pour les API RESTful.
+Mais quelle que soit la norme, vous êtes utilisation
+
+
+Assurez-vous que vos consommateurs comprennent la documentation que vous produisez.
+La prochaine bonne pratique importante consiste à tirer le meilleur parti de tout ce que HTTP fournit.
+
+Les services RESTful basés sur HTTP exploitent au mieux la requête.
+Utilisez la bonne méthode de demande adaptée à votre action spécifique.
+Obtenez post put et delete et assurez-vous que vous renvoyez un statut de réponse approprié lorsqu'une ressource n'est pas trouvé.
+
+Ne pas envoyer d'erreur de serveur lorsqu'il y a une mauvaise requête, lorsqu'il y a une erreur de validation pas dans le serveur,
+envoyer une mauvaise requête 400.
+Quand vous créez une ressource, n'envoyez pas simplement le succès, renvoyez la création.
+
+Réfléchissez au statut de réponse approprié à votre situation.
+Assurez-vous qu'aucune information sécurisée n'est conservée dans votre dossier.
+
+Des choses comme SSL, ne suivent tout simplement pas la définition standard.
+Réfléchissez à ce que vous mettez dans l'URL et assurez-vous qu'il n'y a rien de sûr qui va dans ton cas.
+Utilisez toujours des pluriels.
+
+Par exemple dans le cours, nous avons toujours utilisé /users.
+C'est que nous avons créé était /users/1. Pas /utilisateur/1
+
+Je préfère vraiment utiliser les pluriels, car c'est plus lisible que d'utiliser le singulier quand on pense ressources.
+
+Pensez aux noms, c'est l'utilisateur, c'est le compte. Ce n'est pas supprimer l'utilisateur, ce n'est pas supprimer le compte.
+Pensez aux noms et lorsque vous parlez de ressources.
+Pensez aux noms. Comment pensez-vous des noms ? tout n'est pas toujours possible, n'est-ce pas.
+
+Il y a toujours des exceptions.
+Par exemple, s'il existe un lien de recherche sur la page Web, comment procédez-vous pour tous ces scénarios
+d'exception ? avoir une approche cohérente.
+
+Si vous recherchez quelque chose, alors si vous recherchez des utilisateurs, dites /users/ recherche.
+Donc, sur la ressource, définissez les actions.
+Par exemple, c'est ainsi que github fait une étoile sur l'essentiel.
+
+Donc, si je mets une étoile sur l'essentiel, la façon dont il envoie la demande est à la ressource d'envoyer simplement
+la demande avec une étoile dans l'URL et la même chose dans la suppression.
+
+Si je comprends quelque chose, c'est la demande qui est envoyée pour définir une approche cohérente de la façon dont vous
+souhaitez gérer les scénarios d'exception. Choses qui ne rentrent pas dans les noms. Ce que nous avons examiné dans cette
+étape sont quelques-unes des meilleures pratiques dans une conception reposante.
+
+Chose la plus importante : le consommateur d'abord !
+
+
+################################
+
+Il y a trois façons différentes de déclarer des composants dans React :
+
+class A extends Component : Ce type de composant est appelé composant de classe. Il est déclaré en utilisant une classe
+et il est souvent utilisé pour les composants qui doivent gérer l'état et les interactions avec les utilisateurs. Il est
+généralement utilisé pour les composants plus complexes.
+
+function A() : Ce type de composant est appelé composant fonctionnel. Il est déclaré en utilisant une fonction pure et
+il est souvent utilisé pour les composants qui ne gèrent pas l'état et sont principalement utilisés pour afficher des
+données. Il est généralement plus simple et plus facile à maintenir que les composants de classe.
+
+const A = () => : Ce type de composant est également appelé composant fonctionnel. Il est déclaré en utilisant une
+fonction fléchée et il est souvent utilisé pour les composants qui ne gèrent pas l'état et sont principalement
+utilisés pour afficher des données. Il est généralement plus simple et plus facile à maintenir que les composants
+de classe.
+En général, les composants fonctionnels sont plus simples et plus faciles à maintenir que les composants de classe,
+donc il est souvent recommandé de les utiliser dans la mesure du possible. Cependant, si vous avez besoin de gérer
+l'état ou les interactions avec les utilisateurs, vous devrez utiliser un composant de classe.
+
+
+
+
+habiboulaye diallo
+class AuthenticateRoute extends Component {
+    render() {
+        const isAuthenticated = AuthenticationService.isUserLoggedIn();
+
+        if (isAuthenticated){
+            return <Route {...this.props} />
+        } else {
+            return <Redirect to="/login" />
+        }
+    }
+}
+
+Type ...Readonly<P> is not assignable to type ((props: RouteChildrenProps<ExtractRouteParams<string, string>>) => React.ReactNode) | React.ReactNode | undefined...  Type ...Readonly<P> is not assignable to type ((props: RouteChildrenProps<ExtractRouteParams<string, string>>) => React.ReactNode) | ReactElement<any, string | JSXElementConstructor<any>> | string | number | Iterable<ReactNode> | ReactPortal | boolean    Type ...Readonly<P> is not assignable to type boolean
+Il semble y avoir une erreur de typage dans le code. La propriété Route nécessite un composant React pour fonctionner, mais Redirect n'en est pas un. Vous pouvez remplacer return <Redirect to="/login" /> avec return <Route render={() => <Redirect to="/login" />} /> pour résoudre ce problème.
+
+
+
+
+habiboulaye diallo
+corrige le code
+class AuthenticateRoute extends Component {
+render() {
+const isAuthenticated = AuthenticationService.isUserLoggedIn();
+
+javascript
+Copy code
+    if (isAuthenticated){
+        return <Route {...this.props} />
+    } else {
+        return <Route render={() => <Redirect to="/login" />} />
+    }
+}
+}
+
+
+
+
+habiboulaye diallo
+VM49:6750 crbug/1173575, non-JS module files deprecated.
+Il semble y avoir une erreur dans le code source. L'erreur VM49:6750 crbug/1173575, non-JS module files deprecated. indique que les fichiers de module non-JS sont dépréciés et ne sont plus pris en charge. Vous devrez peut-être trouver une solution alternative pour ce problème, telles que la conversion de vos fichiers de module en fichiers JavaScript. Il serait également utile de consulter la documentation sur ce bogue pour plus de détails.
+
+
+
+
+habiboulaye diallo
+Type ...Readonly<P> is not assignable to type ((props: RouteChildrenProps<ExtractRouteParams<string, string>>) => React.ReactNode) | React.ReactNode | undefined ...
+L'erreur "Type ...Readonly<P> is not assignable to type ((props: RouteChildrenProps<ExtractRouteParams<string, string>>) => React.ReactNode) | React.ReactNode | undefined" indique que le type de retour de votre composant AuthenticateRoute n'est pas conforme aux attentes de React Router.
+
+Dans ce cas précis, il semble que le composant renvoie un composant Route ou un composant Redirect en fonction de la condition isAuthenticated. Cependant, pour utiliser un composant Redirect avec React Router, vous devez le fournir en tant que fonction de rendu d'une instance de Route, au lieu de le renvoyer directement.
+
+Voici une correction possible pour ce code :
+
+javascript
+Copy code
+class AuthenticateRoute extends Component {
+    render() {
+        const isAuthenticated = AuthenticationService.isUserLoggedIn();
+
+        return (
+            <Route
+                {...this.props}
+                render={(props) =>
+                    isAuthenticated ? (
+                        <Component {...props} />
+                    ) : (
+                        <Redirect to="/login" />
+                    )
+                }
+            />
+        );
+    }
+}
+
+
+
+habiboulaye diallo
+...this.props signale toujours une erreur
+Il semble que le problème avec ce code soit que la propriété "props" n'est pas bien typée pour la composant Route.
+
+Essayez de spécifier les props que vous attendez avec un objet.
+
+Exemple:
+
+kotlin
+Copy code
+class AuthenticateRoute extends Component {
+    render() {
+        const isAuthenticated = AuthenticationService.isUserLoggedIn();
+
+        if (isAuthenticated){
+            return <Route {...this.props as any} />
+        } else {
+            return <Redirect to="/login" />
+        }
+    }
+}
+Cela devrait corriger l'erreur et permettre de vous de faire passer toutes les props que vous attendez pour Route.
+
+
+
+
+habiboulaye diallo
+outlet alternative
+Un outlet alternatif est un composant utilisé pour remplacer le contenu d'une vue par un autre. Cela peut être utilisé pour afficher différents contenus pour différentes routes dans une application React.
+
+Le plus souvent, un outlet alternatif est implémenté avec une bibliothèque de routage, comme React Router, et il est utilisé pour remplacer un composant enfant par un autre en fonction de l'URL actuelle.
+
+Exemple:
+
+javascript
+Copy code
+import { Route, Switch } from 'react-router-dom';
+
+function App() {
+  return (
+    <Switch>
+      <Route exact path="/" component={HomePage} />
+      <Route path="/about" component={AboutPage} />
+      <Route component={NotFoundPage} />
+    </Switch>
+  );
+}
+Dans cet exemple, le composant Switch est utilisé pour définir plusieurs routes et pour remplacer le contenu dans l'outlet en fonction de l'URL actuelle. Le composant Route définit une route individuelle et l'associe à un composant à afficher lorsque la route est active.
+
+
+
+
+
+
+################################
+package com.habdiallo.react.webservices.restfulwebservices.BasicAuth;
+
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+@EnableWebSecurity
+public class WebSecurityConfig {
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.csrf().disable()
+                .authorizeRequests()
+                .requestMatchers(HttpMethod.OPTIONS,"/**").permitAll()
+                .anyRequest()
+                .authenticated()
+                .and()
+                .httpBasic();
+        return http.build();
+    }
+
+    /*
+    @Bean
+    public InMemoryUserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
+        UserDetails user = User.withUsername("user")
+                .password(passwordEncoder.encode("password"))
+                .roles("USER")
+                .build();
+
+        UserDetails admin = User.withUsername("admin")
+                .password(passwordEncoder.encode("admin"))
+                .roles("USER", "ADMIN")
+                .build();
+
+        return new InMemoryUserDetailsManager(user, admin);
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        return encoder;
+    }
+
+     */
+
+
+
+}
